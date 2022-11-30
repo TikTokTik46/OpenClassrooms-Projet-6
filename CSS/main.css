@@ -1,0 +1,289 @@
+@font-face { /* Telechargement du style de la police*/
+    font-family: 'Pacifico';
+    src: url('pacifico/Pacifico.ttf');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap'); /* Ne fonctionne pas...*/
+
+
+body
+{
+    margin: 0px;
+    padding: 0px;
+}
+nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    padding-bottom: 15px;
+    border-bottom: 3px solid black;
+}
+nav h1{
+    font-family: 'Pacifico',Arial, Verdana, sans-serif;
+}
+nav .onglets a{
+    text-decoration: none;
+    color:black;
+    margin-right: 10px;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+nav .onglets a:hover{
+    color:gold;
+    border-bottom: 2px solid gold;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height:75px;
+    border-bottom: 3px solid black;
+}
+header em{
+    font-size: large;
+}
+
+#meilleur_film {
+    padding: 10px;
+    display: flex;
+    width: 600px;
+    height: 600 px;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    margin-inline: auto;
+    margin-top: 10px;
+    box-shadow:0 0 14px rgba (0,0,0,0.3);
+}
+
+#button-play-best-movie {
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    font-size:larger;
+}
+.imgJacket{
+    border-radius: 5%;
+    border: 2px solid black;
+    width:500px;
+    box-shadow:0 0 14px grey;
+}
+
+.JacketCarrousel{
+    width:310px;
+    height:420px;
+    margin:0;
+    display:inline-block;
+    background-size: cover;
+}
+.boutonMieuxNotes{
+    position:absolute;
+    width: 50px;
+    cursor: pointer;
+    top: 880px;
+    align-items: center;
+}
+
+.boutonScienceFiction{
+    position:absolute;
+    width: 50px;
+    top: 1450px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.boutonComedie{
+    position:absolute;
+    width: 50px;
+    top: 2010px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.boutonDocumentaire{
+    position:absolute;
+    width: 50px;
+    top: 2570px;
+    cursor: pointer;
+    align-items: center;
+}
+
+#g1{
+    left: 120px;
+    opacity:0.5;
+    transform:rotate(0deg);
+    transition: all 0.3s ease;
+}
+
+#d1{
+    opacity:0.5;
+    right: 120px;
+    transform:rotate(180deg);
+    transition: all 0.3s ease;
+}
+
+#g1:hover{
+    opacity:1;
+    transform:scale(1.1);
+    transition: all 0.3s ease;
+}
+
+#d1:hover{
+    opacity:1;
+    transform:rotate(180deg) scale(1.1);
+    transition: all 0.3s ease;
+}
+#g2{
+    left: 120px;
+    opacity:0.5;
+    transform:rotate(0deg);
+    transition: all 0.3s ease;
+}
+
+#d2{
+    opacity:0.5;
+    right: 120px;
+    transform:rotate(180deg);
+    transition: all 0.3s ease;
+}
+
+#g2:hover{
+    opacity:1;
+    transform:scale(1.1);
+    transition: all 0.3s ease;
+}
+
+#d2:hover{
+    opacity:1;
+    transform:rotate(180deg) scale(1.1);
+    transition: all 0.3s ease;
+}
+#g3{
+    left: 120px;
+    opacity:0.5;
+    transform:rotate(0deg);
+    transition: all 0.3s ease;
+}
+
+#d3{
+    opacity:0.5;
+    right: 120px;
+    transform:rotate(180deg);
+    transition: all 0.3s ease;
+}
+
+#g3:hover{
+    opacity:1;
+    transform:scale(1.1);
+    transition: all 0.3s ease;
+}
+
+#d3:hover{
+    opacity:1;
+    transform:rotate(180deg) scale(1.1);
+    transition: all 0.3s ease;
+}
+#g4{
+    left: 120px;
+    opacity:0.5;
+    transform:rotate(0deg);
+    transition: all 0.3s ease;
+}
+
+#d4{
+    opacity:0.5;
+    right: 120px;
+    transform:rotate(180deg);
+    transition: all 0.3s ease;
+}
+
+#g4:hover{
+    opacity:1;
+    transform:scale(1.1);
+    transition: all 0.3s ease;
+}
+
+#d4:hover{
+    opacity:1;
+    transform:rotate(180deg) scale(1.1);
+    transition: all 0.3s ease;
+}
+#carrousel{
+    display:flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    height:550px;
+    margin-top: 10px;
+    border:solid 4px black;
+    box-shadow:0 0 14px grey;
+}
+footer{
+    margin-top: 50px;
+    text-align: center;
+}
+.modal-container{
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+}
+.modal-container.active{
+    display:block;
+}
+
+.overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgb(77,77,77,0.7);
+}
+
+.modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-width: 700px;
+    min-width: 300px;
+    max-height: 700px;
+    min-height: 400px;
+    padding: 30px;
+    overflow: scroll;
+    background: white;
+    border-radius: 5px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.close-modal{
+    margin:5px 5px 5px 5px;
+    padding: 8px 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background: red;
+    color:white;
+}
+
+
+
+
+@media screen and (max-width: 680px){/* Responsive design - Disparition de la photo*/
+nav h1{
+    display: none;
+}
+}
