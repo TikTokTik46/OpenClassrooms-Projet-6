@@ -1,8 +1,7 @@
-
-const p1 = 0;
-const p2 = 0;
-const p3 = 0;
-const p4 = 0;
+let p1 = 0;
+let p2 = 0;
+let p3 = 0;
+let p4 = 0;
 
 document.body.onload = bestmovie()
 document.body.onload = CreateCarrousel("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score","container1","g1","d1",p1)
@@ -11,8 +10,6 @@ document.body.onload = CreateCarrousel("http://localhost:8000/api/v1/titles/?gen
 document.body.onload = CreateCarrousel("http://localhost:8000/api/v1/titles/?genre=Action&sort_by=-imdb_score","container4","g4","d4",p4)
 
 function bestmovie(){
-    getResponse("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score")
-    .then(response => console.log(response.results));
     fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score")
     .then(response => response.json())
     .then(data => {
@@ -50,14 +47,12 @@ function JacketCarrousel(id_image_debut,id_image_fin,API_response,containername,
     }
 }
 
-
 function CreateCarrousel(APIrequest,containername, g, d, p){
     //Envoi de la requete à l'API pour les 5 premiers films
     fetch(APIrequest)
     .then(response => response.json())
     .then(API_response => {
         let container=document.getElementById(containername);
-        carrousel=document.getElementById("carrousel");
         container.style.width=(310*7)+"px";
         for(i=0;i<5;i++){
                 //Création des jackets du carrousel
@@ -78,8 +73,6 @@ function CreateCarrousel(APIrequest,containername, g, d, p){
         fetch("http://localhost:8000/api/v1/titles/?page=2&" + APIrequest.substring(37))
         .then(response => response.json())
         .then(APIresponse_page_2 => {
-            let container=document.getElementById(containername);
-            carrousel=document.getElementById("carrousel");
             for(i=5;i<7;i++){
                     //Création des jackets du carrousel
                     let jacket = document.createElement("a");
@@ -96,23 +89,24 @@ function CreateCarrousel(APIrequest,containername, g, d, p){
                     modalCreation(i,5,containername,APIresponse_page_2); // Vers la fonction pour la création des fenêtres modale
                 }
                 })
-            })
-            g.onclick=function(){
-                nombreImagesVisible = Math.ceil(carrousel.offsetWidth/310)
-                if (p>-((7-nombreImagesVisible)/2)){
-                p--;
-                container.style.transform="translate("+p*310+"px)";
-                container.style.transition="all 0.5s ease";}
-            }
-            d.onclick=function(){
-                nombreImagesVisible = Math.ceil(carrousel.offsetWidth/310)
-                if (p<(7-nombreImagesVisible)/2){
-                p++;
-                container.style.transform="translate("+p*310+"px)";
-                container.style.transition="all 0.5s ease";}
-            }
-}
-
+            })  
+                document.getElementById(g).onclick=function(){
+                    nombreImagesVisible = Math.ceil(carrousel.offsetWidth/310)
+                    if (p>-((7-nombreImagesVisible)/2)){
+                        p--;
+                        document.getElementById(containername).style.transform="translate("+p*310+"px)";
+                        document.getElementById(containername).style.transition="all 0.5s ease";
+                    }
+                }
+                document.getElementById(d).onclick=function(){
+                    nombreImagesVisible = Math.ceil(carrousel.offsetWidth/310)
+                    if (p<(7-nombreImagesVisible)/2){
+                        p++;
+                        document.getElementById(containername).style.transform="translate("+p*310+"px)";
+                        document.getElementById(containername).style.transition="all 0.5s ease";
+                    }
+                }   
+    }
 
     function modalCreation(i,i_min,containername,data){
         //Création de la fenêtre modale
@@ -192,7 +186,7 @@ function mouseOutJacket(jacket){
     jacket.style.opacity = "0.8";
 }
 
-//Fonction pour récupérer les requêtes !!
+//Fonction pour récupérer les requêtes !! (Inutilisable...)
 function getResponse(urlRequest){
     return fetch(urlRequest)
     .then((response) => response.json())

@@ -41,6 +41,10 @@ header{
     height:75px;
     border-bottom: 3px solid black;
 }
+h2{
+    font-family: Arial, Verdana, sans-serif;
+}
+
 header em{
     font-size: large;
 }
