@@ -26,12 +26,10 @@ function bestmovie(){
     })      
 }
 
-function JacketCarrousel(id_image_debut,id_image_fin,API_response,containername,g,d){
-    let container=document.getElementById(containername);
-    carrousel=document.getElementById("carrousel");
-    container.style.width=(310*7)+"px";
+function JacketCarrousel(id_image_debut,id_image_fin,API_response,containername){
     for(i=id_image_debut;i<id_image_fin;i++){
             //Création des jackets du carrousel
+            let container=document.getElementById(containername);
             let jacket = document.createElement("a");
             jacket.className="JacketCarrousel carrousel-modal-trigger";
             jacket.id="film"+i+"-"+containername;
@@ -43,55 +41,27 @@ function JacketCarrousel(id_image_debut,id_image_fin,API_response,containername,
             jacket.addEventListener("mouseout",function(){mouseOutJacket(jacket)});
             jacket.style.backgroundImage="url("+API_response.results[i-id_image_debut].image_url+")";
             container.appendChild(jacket);
-            modalCreation(i-id_image_debut,containername,API_response); // Vers la fonction pour la création des fenêtres modale
+            modalCreation(i,id_image_debut,containername,API_response); // Vers la fonction pour la création des fenêtres modale
     }
 }
 
 function CreateCarrousel(APIrequest,containername, g, d, p){
     //Envoi de la requete à l'API pour les 5 premiers films
+    let container=document.getElementById(containername);
+    container.style.width=(310*7)+"px";
     fetch(APIrequest)
     .then(response => response.json())
     .then(API_response => {
-        let container=document.getElementById(containername);
-        container.style.width=(310*7)+"px";
-        for(i=0;i<5;i++){
-                //Création des jackets du carrousel
-                let jacket = document.createElement("a");
-                jacket.className="JacketCarrousel carrousel-modal-trigger";
-                jacket.id="film"+i+"-"+containername;
-                jacket.style.cursor = "pointer";
-                jacket.style.opacity = "0.8";
-                jacket.style.transition="opacity 0.5s ease";
-                jacket.addEventListener("click",function(){activeFilmModal(jacket.id)});
-                jacket.addEventListener("mouseover",function(){mouseOverJacket(jacket)});
-                jacket.addEventListener("mouseout",function(){mouseOutJacket(jacket)});
-                jacket.style.backgroundImage="url("+API_response.results[i].image_url+")";
-                container.appendChild(jacket);
-                modalCreation(i,0,containername,API_response); // Vers la fonction pour la création des fenêtres modale
-            }
+        JacketCarrousel(0,5,API_response,containername)
     //Envoi de la requete à l'API pour les 2 derniers films
         fetch("http://localhost:8000/api/v1/titles/?page=2&" + APIrequest.substring(37))
         .then(response => response.json())
-        .then(APIresponse_page_2 => {
-            for(i=5;i<7;i++){
-                    //Création des jackets du carrousel
-                    let jacket = document.createElement("a");
-                    jacket.className="JacketCarrousel carrousel-modal-trigger";
-                    jacket.id="film"+i+"-"+containername;
-                    jacket.style.cursor = "pointer";
-                    jacket.style.opacity = "0.8";
-                    jacket.style.transition="opacity 0.5s ease";
-                    jacket.addEventListener("click",function(){activeFilmModal(jacket.id)});
-                    jacket.addEventListener("mouseover",function(){mouseOverJacket(jacket)});
-                    jacket.addEventListener("mouseout",function(){mouseOutJacket(jacket)});
-                    jacket.style.backgroundImage="url("+APIresponse_page_2.results[i-5].image_url+")";
-                    container.appendChild(jacket);
-                    modalCreation(i,5,containername,APIresponse_page_2); // Vers la fonction pour la création des fenêtres modale
-                }
+        .then(API_response_page_2 => {
+            JacketCarrousel(5,7,API_response_page_2,containername)
                 })
             })  
                 document.getElementById(g).onclick=function(){
-                    nombreImagesVisible = Math.ceil(carrousel.offsetWidth/310)
+                    nombreImagesVisible = Math.ceil(document.getElementsByClassName("carrousel")[1].offsetWidth/310)
                     if (p>-((7-nombreImagesVisible)/2)){
                         p--;
                         document.getElementById(containername).style.transform="translate("+p*310+"px)";
@@ -99,7 +69,7 @@ function CreateCarrousel(APIrequest,containername, g, d, p){
                     }
                 }
                 document.getElementById(d).onclick=function(){
-                    nombreImagesVisible = Math.ceil(carrousel.offsetWidth/310)
+                    nombreImagesVisible = Math.ceil(document.getElementsByClassName("carrousel")[1].offsetWidth/310)
                     if (p<(7-nombreImagesVisible)/2){
                         p++;
                         document.getElementById(containername).style.transform="translate("+p*310+"px)";
@@ -125,7 +95,7 @@ function CreateCarrousel(APIrequest,containername, g, d, p){
         close_button.className="close-modal modal-trigger";
         close_button.innerHTML="x";
         close_button.addEventListener("click",function(){activeFilmModal("film"+i+"-"+containername)})
-        movie_title=document.createElement("h2");
+        movie_title=document.createElement("h3");
         movie_title.innerHTML=movie_data.title;
         movie_jacket=document.createElement("img");
         movie_jacket.src=movie_data.image_url;
@@ -156,7 +126,11 @@ function CreateCarrousel(APIrequest,containername, g, d, p){
         movie_country.innerHTML="Pays d'origine : " + movie_data.countries;     
         //Le résultat au Box Office
         movie_box_office=document.createElement("p");
-        movie_box_office.innerHTML="Résultat au Box Office : " + movie_data.countries;     
+        if (movie_data.worldwide_gross_income = "null"){
+            movie_box_office.innerHTML="Résultat au Box Office : Pas d'informations" ;  
+        } else {
+            movie_box_office.innerHTML="Résultat au Box Office : " + movie_data.worldwide_gross_income + movie_data.budget_currency ; 
+        }
         //Le résumé du film
         movie_summary=document.createElement("p");
         movie_summary.innerHTML= movie_data.long_description;     
@@ -185,13 +159,3 @@ function mouseOverJacket(jacket){
 function mouseOutJacket(jacket){
     jacket.style.opacity = "0.8";
 }
-
-//Fonction pour récupérer les requêtes !! (Inutilisable...)
-function getResponse(urlRequest){
-    return fetch(urlRequest)
-    .then((response) => response.json())
-    .then((responseData) => {
-      return responseData;
-    })
-    .catch(error => console.warn(error));
-  }

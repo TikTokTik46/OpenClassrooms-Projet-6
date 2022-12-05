@@ -1,74 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+
     <head>
-        <meta charset="utf-8" />
-		<link rel="stylesheet" href="css/main.css" />  <!-- Appel code CSS3 -->
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/main.css">  <!-- Appel code CSS3 -->
         <title>JustStreamIt</title>
-        <script src="JS/Script.js" defer></script>
+        <script src="JS/Script.js" defer></script> <!-- Appel code JS -->
     </head>
-    <nav>
-        <img src="images/logo.png" width=120px height=90px/>
-        <h1>JustStreamIt</h1>
-        <div class="onglets">
-            <a href="#"> Acceuil </a>
-            <a href="#"> Catégories </a>
-            <a href="#"> Contact </a>
+
+    <body>
+        <nav>
+            <img src="images/logo.png" alt="logo JustStreamIt" width=120 height=90>
+            <h1>JustStreamIt</h1>
+            <div class="onglets">
+                <a href="#"> Acceuil </a>
+                <a href="#"> Catégories </a>
+                <a href="#"> Contact </a>
+            </div>
+        </nav>
+
+        <!-- Header : Phrase d'accroche --> 
+        <header>
+            <em> 'Tu ne sais pas quoi regarder pour passer une bonne soirée ? Alors JustStreamIt !'' </em>
+        </header>
+
+        <!-- Meilleur Film --> 
+        <div id="meilleur_film">
+            <div id="infos_film">
+                <h3 id="best_movie_title"> Titre du meilleur film </h3>
+                <button id="button-play-best-movie"> Play </button>
+                <p id="best_movie_summary"></p>
+            </div>
+            <img id="best_movie_image" src="JavaScript" alt="image meilleur film" class="imgJacket modal-trigger">
         </div>
-    </nav>
-<header>
-    <em> 'Tu ne sais pas quoi regarder pour passer une bonne soirée ? Alors JustStreamIt !'' </em>
-</header>	
-<body>
 
-  <!-- Meilleur Film --> 
-    <div id="meilleur_film">
-        <div id="infos_film">
-            <h2 id="best_movie_title"></h2>
-            <button id="button-play-best-movie"> Play </button>
-            <p id="best_movie_summary"></p>
+        <!-- Films les mieux notés -->  
+        <div class="carrousel">
+            <h2> Les mieux notés </h2>
+            <div id="container1"></div>
+            <img src="images/next-button.png" alt="bouton gauche" class="boutonMieuxNotes" id="g1">
+            <img src="images/next-button.png" alt="bouton droit" class="boutonMieuxNotes" id="d1">
         </div>
-<img id="best_movie_image" class="imgJacket modal-trigger"/>
-    </div>
-  <!-- Films les mieux notés -->  
-    <div id="carrousel">
-        <h2> Les mieux notés </h2>
-        <div id="container1">
+
+        <!-- Catégorie 1 : Science-Ficiton -->
+        <div class="carrousel">
+            <h2> Science-Fiction </h2>
+            <div id="container2"></div>
+            <img src="images/next-button.png" alt="bouton gauche" class="boutonScienceFiction" id="g2">
+            <img src="images/next-button.png" alt="bouton droit" class="boutonScienceFiction" id="d2">
         </div>
-        <img src="images/next-button.png" class="boutonMieuxNotes" id="g1" />
-        <img src="images/next-button.png" class="boutonMieuxNotes" id="d1" />
-    </div> 
- <!-- Catégorie 1 : Science-Ficiton -->
 
-<div id="carrousel">
-    <h2> Science-Fiction </h2>
-    <div id="container2">
-    </div>
-    <img src="images/next-button.png" class="boutonScienceFiction" id="g2" />
-    <img src="images/next-button.png" class="boutonScienceFiction" id="d2" />
-</div>
-  <!-- Catégorie 2 : Comédie --> 
+        <!-- Catégorie 2 : Comédie --> 
+        <div class="carrousel">
+            <h2> Comédie </h2>
+            <div id="container3"></div>
+            <img src="images/next-button.png" alt="bouton gauche" class="boutonComedie" id="g3">
+            <img src="images/next-button.png" alt="bouton droit" class="boutonComedie" id="d3">
+        </div>
 
-<div id="carrousel">
-    <h2> Comédie </h2>
-    <div id="container3">
-    </div>
-    <img src="images/next-button.png" class="boutonComedie" id="g3" />
-    <img src="images/next-button.png" class="boutonComedie" id="d3" />
-</div>
-  <!-- Catégorie 3 : Documentaire -->  
+        <!-- Catégorie 3 : Action -->  
+        <div class="carrousel">
+            <h2> Action </h2>
+            <div id="container4"></div>
+            <img src="images/next-button.png" alt="bouton gauche" class="boutonDocumentaire" id="g4">
+            <img src="images/next-button.png" alt="bouton droit" class="boutonDocumentaire" id="d4">
+        </div>
 
-<div id="carrousel">
-    <h2> Action </h2>
-    <div id="container4">
-    </div>
-    <img src="images/next-button.png" class="boutonDocumentaire" id="g4" />
-    <img src="images/next-button.png" class="boutonDocumentaire" id="d4" />
-</div>
+        <!-- Pied de page -->
+        <footer>
+            <p> Site réalisé en novembre 2022 </p>
+        </footer>
 
+    </body>
 
-
-</body>
-<footer>    <!-- Pied de page -->
-</p> Site réalisé en novembre 2022 </p>
-</footer>
 </html>

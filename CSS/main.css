@@ -1,16 +1,16 @@
-@font-face { /* Telechargement du style de la police*/
-    font-family: 'Pacifico';
-    src: url('pacifico/Pacifico.ttf');
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap'); /* Ne fonctionne pas...*/
-
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&family=Dancing+Script&family=Kavoon&family=Lobster&display=swap');
 
 body
 {
     margin: 0px;
     padding: 0px;
 }
+
+em{
+    text-align: center;
+}
+
+
 nav{
     display: flex;
     flex-wrap: wrap;
@@ -20,9 +20,19 @@ nav{
     padding-bottom: 15px;
     border-bottom: 3px solid black;
 }
-nav h1{
-    font-family: 'Pacifico',Arial, Verdana, sans-serif;
+h1{
+    font-family: 'Dancing Script',Arial, Verdana, sans-serif;
+    font-size:xx-large;
 }
+
+h2{
+    font-family: 'Kavoon',Arial, Verdana, sans-serif;
+}
+
+h3{
+    font-family: 'Aclonica',Arial, Verdana, sans-serif;
+}
+
 nav .onglets a{
     text-decoration: none;
     color:black;
@@ -42,7 +52,7 @@ header{
     border-bottom: 3px solid black;
 }
 h2{
-    font-family: Arial, Verdana, sans-serif;
+    font-family: 'Dancing Script',Arial, Verdana, sans-serif;
 }
 
 header em{
@@ -50,16 +60,13 @@ header em{
 }
 
 #meilleur_film {
-    padding: 10px;
+    padding: 15px;
     display: flex;
-    width: 600px;
-    height: 600 px;
+    width: 80vw;
     justify-content: space-around;
     text-align: center;
     align-items: center;
     margin-inline: auto;
-    margin-top: 10px;
-    box-shadow:0 0 14px rgba (0,0,0,0.3);
 }
 
 #button-play-best-movie {
@@ -216,7 +223,7 @@ header em{
     transform:rotate(180deg) scale(1.1);
     transition: all 0.3s ease;
 }
-#carrousel{
+.carrousel{
     display:flex;
     flex-direction: column;
     overflow: hidden;
@@ -235,7 +242,7 @@ footer{
 .modal-container{
     display: none;
     position: fixed;
-    top: 0;
+    top:0;
     width: 100vw;
     height: 100vh;
 }
@@ -250,23 +257,25 @@ footer{
     background: rgb(77,77,77,0.7);
 }
 
+#best_movie_image{
+    width:310px;
+    height:420px;
+}
 .modal{
+    position: absolute;
+    top: 10vh;
+    bottom: 10vh;
+    left:50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 95%;
-    max-width: 700px;
-    min-width: 300px;
-    max-height: 700px;
-    min-height: 400px;
+    max-width: 600px;
     padding: 30px;
     overflow: scroll;
     background: white;
     border-radius: 5px;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%)
 }
 
 .close-modal{
@@ -284,10 +293,11 @@ footer{
 }
 
 
-
-
 @media screen and (max-width: 680px){/* Responsive design - Disparition de la photo*/
 nav h1{
+    display: none;
+}
+#infos_film{
     display: none;
 }
 }
