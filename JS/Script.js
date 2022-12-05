@@ -16,7 +16,10 @@ function bestmovie(){
         title=document.getElementById("best_movie_title");
         title.innerHTML=data.results[0].title;
         image=document.getElementById("best_movie_image");
+        button=document.getElementById("button-play-best-movie");
         image.src=data.results[0].image_url
+        image.addEventListener("click",function(){activeFilmModal("film0-container1")});
+        button.addEventListener("click",function(){activeFilmModal("film0-container1")});
         fetch(data.results[0].url)
         .then(response => response.json())
         .then(data => {
